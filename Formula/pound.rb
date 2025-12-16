@@ -14,7 +14,12 @@ class Pound < Formula
   uses_from_macos "libxcrypt"
 
   def install
-    system "./configure", *std_configure_args
+    args = []
+    if OS.mac?
+       args << "--without-fsevmon"
+    end
+
+    system "./configure", *std_configure_args, *args
     system "make", "install"
   end
 
