@@ -15,9 +15,7 @@ class Pound < Formula
 
   def install
     args = []
-    if OS.mac?
-       args << "--without-fsevmon"
-    end
+    args << "--without-fsevmon" if OS.mac?
 
     system "./configure", *std_configure_args, *args
     system "make", "install"
